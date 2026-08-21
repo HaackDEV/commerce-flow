@@ -4,11 +4,11 @@
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.0.3-green?style=for-the-badge&logo=springboot)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-17-blue?style=for-the-badge&logo=postgresql)
 ![Docker](https://img.shields.io/badge/Docker-Compose-blue?style=for-the-badge&logo=docker)
-![Railway](https://img.shields.io/badge/Deploy-Railway-black?style=for-the-badge&logo=railway)
+![Render](https://img.shields.io/badge/Deploy-Render-46E3B7?style=for-the-badge&logo=render)
 
 > API REST para gestão comercial de representantes autônomos — controle de fornecedores, clientes, produtos, amostras e pedidos com conversão automática de desenvolvimento em pedido.
 
-**🌐 [Swagger UI — Live Demo](https://sistema-gestao-wonder-production.up.railway.app/swagger-ui/index.html)**
+**🌐 [Swagger UI — Live Demo](https://commerce-flow-kdbb.onrender.com/swagger-ui/index.html)**
 
 ---
 
@@ -41,7 +41,7 @@ Representantes comerciais autônomos gerenciam amostras, pilotagens e pedidos de
 | **Mapeamento** | MapStruct 1.6 | Conversão de DTOs em tempo de compilação, garantindo alta performance e segurança de tipos (*type-safety*). |
 | **Documentação** | Springdoc OpenAPI 3 (Swagger UI) | Contrato de API vivo e interativo, facilitando a integração para clientes/front-end. |
 | **Containers** | Docker + Docker Compose | Padronização de ambiente (o código funciona em qualquer máquina) e onboarding rápido. |
-| **Deploy** | Railway (Dockerfile multi-stage) | CI/CD fluido com imagens Docker otimizadas (multi-stage) para deploy mais rápido e leve. |
+| **Deploy** | Render (Dockerfile multi-stage) | CI/CD fluido com imagens Docker otimizadas (multi-stage) para deploy mais rápido e leve. |
 | **Testes** | JUnit 5 + Mockito | Garantia de qualidade com testes unitários focados nas regras de negócio e testes de integração. |
 
 ---
