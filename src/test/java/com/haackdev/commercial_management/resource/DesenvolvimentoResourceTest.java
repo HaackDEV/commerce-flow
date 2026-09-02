@@ -6,12 +6,15 @@ import com.haackdev.commercial_management.dto.request.DesenvolvimentoRequest;
 import com.haackdev.commercial_management.dto.response.DesenvolvimentoResponse;
 import com.haackdev.commercial_management.dto.response.PedidoResponse;
 import com.haackdev.commercial_management.entity.enums.StatusDesenvolvimento;
+import com.haackdev.commercial_management.security.JwtService;
+import com.haackdev.commercial_management.security.UserDetailsServiceImpl;
 import com.haackdev.commercial_management.service.DesenvolvimentoService;
 import com.haackdev.commercial_management.service.exceptions.DatabaseException;
 import com.haackdev.commercial_management.service.exceptions.ResourceNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
@@ -31,6 +34,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Testes de Integração da Camada Web (Controller) para Desenvolvimento.
  */
 @WebMvcTest(DesenvolvimentoResource.class)
+@AutoConfigureMockMvc(addFilters = false)
 public class DesenvolvimentoResourceTest {
 
     @Autowired
@@ -38,6 +42,10 @@ public class DesenvolvimentoResourceTest {
 
     @MockitoBean
     private DesenvolvimentoService service;
+    @MockitoBean
+    private JwtService jwtService;
+    @MockitoBean
+    private UserDetailsServiceImpl userDetailsService;
 
     private ObjectMapper objectMapper;
 

@@ -6,12 +6,15 @@ import com.haackdev.commercial_management.dto.request.ItemPedidoRequest;
 import com.haackdev.commercial_management.dto.request.PedidoRequest;
 import com.haackdev.commercial_management.dto.response.ItemPedidoResponse;
 import com.haackdev.commercial_management.dto.response.PedidoResponse;
+import com.haackdev.commercial_management.security.JwtService;
+import com.haackdev.commercial_management.security.UserDetailsServiceImpl;
 import com.haackdev.commercial_management.service.PedidoService;
 import com.haackdev.commercial_management.service.exceptions.DatabaseException;
 import com.haackdev.commercial_management.service.exceptions.ResourceNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
@@ -32,6 +35,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Testes de Integração da Camada Web (Controller) para Pedido.
  */
 @WebMvcTest(PedidoResource.class)
+@AutoConfigureMockMvc(addFilters = false)
 public class PedidoResourceTest {
 
     @Autowired
@@ -39,6 +43,10 @@ public class PedidoResourceTest {
 
     @MockitoBean
     private PedidoService service;
+    @MockitoBean
+    private JwtService jwtService;
+    @MockitoBean
+    private UserDetailsServiceImpl userDetailsService;
 
     private ObjectMapper objectMapper;
 

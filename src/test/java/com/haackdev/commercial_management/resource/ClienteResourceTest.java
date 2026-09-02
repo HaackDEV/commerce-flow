@@ -3,6 +3,8 @@ package com.haackdev.commercial_management.resource;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.haackdev.commercial_management.dto.request.ClienteRequest;
 import com.haackdev.commercial_management.dto.response.ClienteResponse;
+import com.haackdev.commercial_management.security.JwtService;
+import com.haackdev.commercial_management.security.UserDetailsServiceImpl;
 import com.haackdev.commercial_management.service.ClienteService;
 import com.haackdev.commercial_management.service.exceptions.DatabaseException;
 import com.haackdev.commercial_management.service.exceptions.ResourceNotFoundException;
@@ -10,6 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
@@ -29,6 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Usa Mocks (MockitoBean) para isolar a camada de serviço.
  */
 @WebMvcTest(ClienteResource.class)
+@AutoConfigureMockMvc(addFilters = false)
 public class ClienteResourceTest {
 
     @Autowired
@@ -36,6 +40,10 @@ public class ClienteResourceTest {
 
     @MockitoBean
     private ClienteService service; // Mock da camada de serviço. Em Spring Boot 3.4+ usa-se @MockitoBean ao invés de @MockBean
+    @MockitoBean
+    private JwtService jwtService;
+    @MockitoBean
+    private UserDetailsServiceImpl userDetailsService;
 
     private final ObjectMapper objectMapper = new ObjectMapper(); // Ferramenta para traduzir objetos Java em JSON (Serialização/Desserialização)
 

@@ -4,12 +4,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.haackdev.commercial_management.dto.request.FornecedorRequest;
 import com.haackdev.commercial_management.dto.response.FornecedorResponse;
 import com.haackdev.commercial_management.entity.Fornecedor;
+import com.haackdev.commercial_management.security.JwtService;
+import com.haackdev.commercial_management.security.UserDetailsServiceImpl;
 import com.haackdev.commercial_management.service.FornecedorService;
 import com.haackdev.commercial_management.service.exceptions.DatabaseException;
 import com.haackdev.commercial_management.service.exceptions.ResourceNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
@@ -28,6 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Testes de Integração da Camada Web (Controller) para Fornecedor.
  */
 @WebMvcTest(FornecedorResource.class)
+@AutoConfigureMockMvc(addFilters = false)
 public class FornecedorResourceTest {
 
     @Autowired
@@ -35,6 +39,10 @@ public class FornecedorResourceTest {
 
     @MockitoBean
     private FornecedorService service; // Mock da camada de inteligência/banco
+    @MockitoBean
+    private JwtService jwtService;
+    @MockitoBean
+    private UserDetailsServiceImpl userDetailsService;
 
     private ObjectMapper objectMapper = new ObjectMapper();
 
