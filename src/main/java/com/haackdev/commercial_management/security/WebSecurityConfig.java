@@ -30,7 +30,7 @@ public class WebSecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/login", "/usuarios", "/swagger-ui/**", "/v3/api-docs/**").permitAll()
+                        .requestMatchers("/auth/login", "/usuarios", "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**", "/actuator/health").permitAll()
                         .anyRequest().authenticated()
                 );
         return http.build();
