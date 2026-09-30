@@ -64,6 +64,9 @@ Este documento centraliza o planejamento estratégico, as diretrizes de engenhar
 *Objetivo: Fechar as pendências antes de adicionar novas tecnologias.*
 
 - [ ] Corrigir o teste `contextLoads` (definir `jwt.secret` no perfil `test`).
+- [ ] Testes da camada de autenticação (`AuthResource`, `JwtService`, `UsuarioService`) e de Bean Validation (body inválido → 422).
+- [ ] Retornar **401** (e não 403) em requisições sem token.
+- [ ] Instalar o GitHub App da Render para o **auto-deploy** voltar a funcionar (hoje o deploy é manual).
 - [ ] Pipeline de **CI no GitHub Actions** (build + testes a cada push/PR) e badge no README.
 - [ ] Controle de acesso baseado em **Roles** (`hasRole` / `@PreAuthorize` usando o `RoleUsuario`).
 - [ ] Migrations com **Flyway** e remoção do `ddl-auto=update` em produção.
