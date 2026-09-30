@@ -72,19 +72,7 @@ Este documento centraliza o planejamento estratégico, as diretrizes de engenhar
 - [ ] Atualizar README (URL de clone ainda aponta para `sistema-gestao-wonder`).
 - [ ] *(Decisão de produto)* Isolar os dados por usuário: cada representante vê apenas seus clientes, pedidos e desenvolvimentos.
 
-### Fase 7: Mensageria com Kafka
-*Objetivo: Publicar eventos de negócio e processá-los de forma assíncrona em um serviço separado.*
-
-- [ ] Definir os eventos de domínio: `PedidoCriado`, `DesenvolvimentoStatusAlterado`, `DesenvolvimentoConvertidoEmPedido`.
-- [ ] Implementar o padrão **Transactional Outbox** (evento salvo na mesma transação do negócio).
-- [ ] Publicador do outbox desligado por `profile` no Render (a API continua funcionando sem Kafka).
-- [ ] Criar o `notificacao-service` consumindo os eventos (notificação por e-mail / histórico).
-- [ ] Consumidor **idempotente** e **Dead Letter Topic** para mensagens com falha.
-- [ ] Testes de integração com **Testcontainers** (Kafka + PostgreSQL).
-- [ ] `docker-compose` local com Kafka em modo **KRaft**.
-- [ ] Reorganizar o repositório como monorepo (`api/`, `notificacao-service/`).
-
-### Fase 8: Interface Gráfica (Frontend)
+### Fase 7: Interface Gráfica (Frontend)
 *Objetivo: Dar vida ao sistema com uma UI moderna e responsiva consumindo a API segura.*
 
 - [ ] Setup React (Vite) / Next.js + Tailwind CSS.
@@ -94,7 +82,7 @@ Este documento centraliza o planejamento estratégico, as diretrizes de engenhar
 - [ ] Restringir o CORS à origem do front (hoje `allowedOrigins("*")`).
 
 ### Fora do escopo
-- **Kubernetes** e arquitetura com múltiplos microserviços ficam para um próximo projeto, com domínio que justifique essa complexidade.
+- **Kafka**, **Kubernetes** e arquitetura com múltiplos microserviços ficam para um próximo projeto, com domínio que justifique essa complexidade.
 
 ---
 
