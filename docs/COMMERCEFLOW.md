@@ -42,29 +42,59 @@ Este documento centraliza o planejamento estratégico, as diretrizes de engenhar
 - [x]  Configurar Springdoc Swagger UI (Documentação Interativa).
 - [x]  Testes de Unidade (`Service Layer`).
 - [x]  Testes de Integração (`Controller Layer` com `@WebMvcTest`).
-- [ ]  Documentação de Schemas OpenAPI detalhados.
+- [ ]  Documentação de Schemas OpenAPI detalhados *(movido para a Fase 6)*.
 
-###  Fase 3: Segurança (Spring Security & JWT) - *[NEXT]*
+### Fase 4: Segurança (Spring Security & JWT)
 *Objetivo: Elevar a arquitetura do projeto para padrões corporativos, protegendo endpoints antes da integração com o front.*
 
-- [ ] Setup do **Spring Security**.
-- [ ] Autenticação Stateless com **Tokens JWT**.
-- [ ] Controle de rotas públicas (ex: Swagger, Login) e rotas protegidas (API).
-- [ ] Controle de acesso baseado em Roles (ex: Admin vs Representante).
+- [x] Setup do **Spring Security**.
+- [x] Autenticação Stateless com **Tokens JWT**.
+- [x] Controle de rotas públicas (ex: Swagger, Login, Health) e rotas protegidas (API).
+- [ ] Controle de acesso baseado em Roles (ex: Admin vs Representante) *(movido para a Fase 6)*.
 
-###  Fase 4: Interface Gráfica (Frontend)
+### Fase 5: Deploy e Nuvem
+*Objetivo: Publicar a API em ambiente acessível para demonstração.*
+
+- [x] Deploy via Dockerfile multi-stage no **Render**.
+- [x] PostgreSQL em nuvem no **Supabase**.
+- [x] Keep-alive via cron-job.org em `/actuator/health` (evita hibernação do Render e pausa do Supabase).
+- [ ] Versionamento estrutural de Banco de Dados com **Flyway** *(movido para a Fase 6)*.
+
+### Fase 6: Consolidação - *[NEXT]*
+*Objetivo: Fechar as pendências antes de adicionar novas tecnologias.*
+
+- [ ] Corrigir o teste `contextLoads` (definir `jwt.secret` no perfil `test`).
+- [ ] Pipeline de **CI no GitHub Actions** (build + testes a cada push/PR) e badge no README.
+- [ ] Controle de acesso baseado em **Roles** (`hasRole` / `@PreAuthorize` usando o `RoleUsuario`).
+- [ ] Migrations com **Flyway** e remoção do `ddl-auto=update` em produção.
+- [ ] **Paginação** nos endpoints de listagem (`Page` / `Pageable`).
+- [ ] Documentação de Schemas OpenAPI detalhados.
+- [ ] Atualizar README (URL de clone ainda aponta para `sistema-gestao-wonder`).
+- [ ] *(Decisão de produto)* Isolar os dados por usuário: cada representante vê apenas seus clientes, pedidos e desenvolvimentos.
+
+### Fase 7: Mensageria com Kafka
+*Objetivo: Publicar eventos de negócio e processá-los de forma assíncrona em um serviço separado.*
+
+- [ ] Definir os eventos de domínio: `PedidoCriado`, `DesenvolvimentoStatusAlterado`, `DesenvolvimentoConvertidoEmPedido`.
+- [ ] Implementar o padrão **Transactional Outbox** (evento salvo na mesma transação do negócio).
+- [ ] Publicador do outbox desligado por `profile` no Render (a API continua funcionando sem Kafka).
+- [ ] Criar o `notificacao-service` consumindo os eventos (notificação por e-mail / histórico).
+- [ ] Consumidor **idempotente** e **Dead Letter Topic** para mensagens com falha.
+- [ ] Testes de integração com **Testcontainers** (Kafka + PostgreSQL).
+- [ ] `docker-compose` local com Kafka em modo **KRaft**.
+- [ ] Reorganizar o repositório como monorepo (`api/`, `notificacao-service/`).
+
+### Fase 8: Interface Gráfica (Frontend)
 *Objetivo: Dar vida ao sistema com uma UI moderna e responsiva consumindo a API segura.*
 
 - [ ] Setup React (Vite) / Next.js + Tailwind CSS.
 - [ ] Integração com a API Backend via Axios (com interceptors para o JWT).
 - [ ] Dashboard de Operações Comerciais.
+- [ ] Deploy do front (ex: Vercel / Netlify).
+- [ ] Restringir o CORS à origem do front (hoje `allowedOrigins("*")`).
 
-### Fase 5: Nuvem e DevOps (Cloud Architecture)
-*Objetivo: Publicar a API em ambiente escalável e automatizar fluxos.*
-
-- [ ] Deploy automático (CI/CD) no Railway ou Render.
-- [ ] Migração do PostgreSQL para nuvem (Supabase/Neon).
-- [ ] Versionamento estrutural de Banco de Dados com **Flyway**.
+### Fora do escopo
+- **Kubernetes** e arquitetura com múltiplos microserviços ficam para um próximo projeto, com domínio que justifique essa complexidade.
 
 ---
 
