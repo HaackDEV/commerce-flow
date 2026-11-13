@@ -5,8 +5,13 @@ public record ClienteResponse(
     String razaoSocial,
     String nomeFantasia,
     String cnpj,
-    String emailGeral,
+    String enderecoCompleto,
     String cidade,
-    String estado
+    String estado,
+    String telefoneGeral,
+    String emailGeral,
+    String contatoDesenvolvimento,
+    String contatoCompras,
+    String condicoesPagamento
 ) {
 }

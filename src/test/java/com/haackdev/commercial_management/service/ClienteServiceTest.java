@@ -68,9 +68,14 @@ public class ClienteServiceTest {
                 cliente.getRazaoSocial(),
                 cliente.getNomeFantasia(),
                 cliente.getCnpj(),
-                cliente.getEmailGeral(),
+                cliente.getEnderecoCompleto(),
                 cliente.getCidade(),
-                cliente.getEstado()
+                cliente.getEstado(),
+                cliente.getTelefoneGeral(),
+                cliente.getEmailGeral(),
+                cliente.getContatoDesenvolvimento(),
+                cliente.getContatoCompras(),
+                cliente.getCondicoesPagamento()
         );
 
         clienteRequest = new ClienteRequest(
