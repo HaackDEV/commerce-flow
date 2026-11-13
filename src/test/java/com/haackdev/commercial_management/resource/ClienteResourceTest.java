@@ -67,9 +67,14 @@ public class ClienteResourceTest {
                 "Razão Social",
                 "Wonder SA",
                 "12345678000190",
-                "email@teste.com",
+                "Endereço",
                 "Cidade",
-                "SC"
+                "SC",
+                "11999999999",
+                "email@teste.com",
+                "Contato Desenvolvimento",
+                "Contato Compras",
+                "30/60/90"
         );
 
         requestDTO = new ClienteRequest(
